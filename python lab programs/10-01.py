@@ -1,32 +1,40 @@
 class Robot:
-    population = 0
+    pop = 0
+
     def __init__(self, name):
         self.name = name
-        print('(Initializing {0})'.format(self.name))
-        Robot.population += 1
+        print(f"Initializing {self.name}")
+        Robot.pop += 1
+
     def __del__(self):
-        print('{0} is being destroyed!'.format(self.name))
-        Robot.population -= 1
-        if Robot.population == 0:
-            print('{0} was the last one.'.format(self.name))
+        print(f"{self.name} is being destroyed")
+        Robot.pop -= 1
+        if Robot.pop == 0:
+            print(f"{self.name} was the last one")
         else:
-            print('There are still {0:d} robots working.'.format(Robot.population))
-    def sayHi(self):
-        print('Greetings, my masters call me {0}.'.format(self.name))
-    def howMany():
-        print('We have {0:d} robots.'.format(Robot.population))
-    howMany = staticmethod(howMany)
+            print(f"There are still {Robot.pop} working")
 
-droid1 = Robot('R1-D1')
-droid1.sayHi()
-Robot.howMany()
-droid2 = Robot('R2-D2')
-droid2.sayHi()
-Robot.howMany()
+    def hi(self):
+        print(f"Greetings! My masters call me {self.name}")
 
-print("\nRobots can do some work here.\n")
+    def howmany(self):
+        print(f"There are {Robot.pop} robots")
 
-print("Robots have finished their work. So let's destroy them.")
-del droid1
-del droid2
-Robot.howMany()
+
+x = Robot("r1-d1")
+x.hi()
+x.howmany()
+y = Robot("r2-d2")
+y.hi()
+y.howmany()
+
+print("Robots work")
+print("Robots die")
+
+del x
+del y
+# robot.howmany()  # Commented this line as it's not a valid usage
+
+# Access the class variable directly to get the total count
+print("Total robots remaining:", Robot.pop)
+
